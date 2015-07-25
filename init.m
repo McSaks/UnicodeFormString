@@ -13,16 +13,16 @@ Formats a string with Unicode symbols with minimal glyph substitution. \
 Begin["`Private`"];
 
 
-UnicodeFormString[s_String, BoxData] := "\!\(\*StyleBox[\""<>s<>"\",\
+UnicodeFormString[s_String, BoxData] := "\!\(\*StyleBox[\""<>StringReplace[s, {"\""->"\\\"","\\"->"\\\\"}]<>"\",\
   PrivateFontOptions->{\"OperatorSubstitution\"->False},\
   CharacterEncoding->\"Unicode\"]\)";
-UnicodeFormString[s_String, BoxData, opts__] := "\!\(\*StyleBox[\""<>s<>"\",\
+UnicodeFormString[s_String, BoxData, opts__] := "\!\(\*StyleBox[\""<>StringReplace[s, {"\""->"\\\"","\\"->"\\\\"}]<>"\",\
   PrivateFontOptions->{\"OperatorSubstitution\"->False},\
   CharacterEncoding->\"Unicode\","<>ToString[{opts},InputForm]<>"]\)";
-UnicodeFormString[s_String, TextData] := "\*Cell[\""<>s<>"\",\
+UnicodeFormString[s_String, TextData] := "\*Cell[\""<>StringReplace[s, {"\""->"\\\"","\\"->"\\\\"}]<>"\",\
   PrivateFontOptions->{\"OperatorSubstitution\"->False},\
   CharacterEncoding->\"Unicode\"]";
-UnicodeFormString[s_String, TextData, opts__] := "\*Cell[\""<>s<>"\",\
+UnicodeFormString[s_String, TextData, opts__] := "\*Cell[\""<>StringReplace[s, {"\""->"\\\"","\\"->"\\\\"}]<>"\",\
   PrivateFontOptions->{\"OperatorSubstitution\"->False},\
   CharacterEncoding->\"Unicode\","<>ToString[{opts},InputForm]<>"]";
 UnicodeFormString[s_String] := UnicodeFormString[s, TextData];
